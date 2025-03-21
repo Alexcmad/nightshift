@@ -8,5 +8,6 @@ import java.util.List;
 @Repository
 public interface ArrangementRepository extends JpaRepository<Arrangement, Long> {
     List<Arrangement> findByGenre(String genre);
+    List<Arrangement> findByTitle(String title);
 
 }
