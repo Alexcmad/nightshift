@@ -10,14 +10,12 @@ A **Spotify-like** web-based application that allows users to listen to musical 
 - **Metadata & Search**: Arrangements include title, artist, genre, instrumentation, and tags.
 
 ## Development Roadmap 🚀  
-✅ **1. Set up project on EC2** ← *You are here*  
-
-⬜ **2. Implement authentication (JWT & OAuth2)** 
-
-⬜ **3. Set up database schema (PostgreSQL)**  
-⬜ **4. Develop API endpoints for user & arrangement management**  
+✅ **1. Set up project on EC2**\
+⬜ **2. Implement authentication (JWT & OAuth2)**\
+✅ **3. Set up database schema (PostgreSQL)**  
+✅ **4. Develop API endpoints for user & arrangement management**  
 ⬜ **5. Integrate AWS S3 for file storage**  
-⬜ **6. Implement playlist management**  
+✅ **6. Implement playlist management**  
 ⬜ **7. Deploy and optimize for production**  
 
 ## Tech Stack 🛠️  
@@ -56,19 +54,30 @@ A **Spotify-like** web-based application that allows users to listen to musical 
    ```
 
 ## API Endpoints 📌  
-| Method | Endpoint             | Description |
-|--------|----------------------|-------------|
-| `POST` | `/auth/register`     | Register a new user |
-| `POST` | `/auth/login`        | Authenticate user & get JWT |
-| `GET`  | `/arrangements`      | Fetch all musical arrangements |
-| `POST` | `/arrangements`      | Upload a new arrangement |
-| `GET`  | `/playlists`         | Get user playlists |
-| `POST` | `/playlists`         | Create a new playlist |
+| Method   | Endpoint                                    | Description                                 |
+|----------|---------------------------------------------|---------------------------------------------|
+| `POST`   | `/auth/register`                            | (UNIMPLEMENTED) Register a new user         |
+| `POST`   | `/auth/login`                               | (UNIMPLEMENTED) Authenticate user & get JWT |
+| `POST`   | `/users`                                    | Create new User                             |
+| `PUT`    | `/users`                                    | Update a User                               |
+| `GET`    | `/users/id/{id}`                            | Get user by ID                              |
+| `GET`    | `/users/email/{email}`                      | Get user by email                           |
+| `GET`    | `/users/username/{username}`                | Get user by username                        |
+| `DELETE` | `/users/{id}`                               | Delete user by ID                           |
+| `GET`    | `/arrangements`                             | Fetch all musical arrangements              |
+| `GET`    | `/arrangements/{id}`                        | Fetch an arrangement by ID                  |
+| `GET`    | `/arrangements/title/{title}`               | Fetch an list of arrangements by title      |
+| `POST`   | `/arrangements`                             | Upload a new arrangement                    |
+| `PUT`    | `/arrangements`                             | Update an arrangement                       |
+| `DELETE` | `/arrangements/{id}`                        | Delete an arrangement by ID                 |
+| `POST`   | `/playlists`                                | Create a new playlist                       |
+| `GET`    | `playlists/{id}`                            | Get playlist by ID                          |
+| `DELETE` | `/playlists/{id}`                           | Delete playlist by ID                       |
+| `GET`    | `/playlists/user/{userId}`                  | Get user playlists                          |
+| `POST`   | `/{playlistId}/arrangement/{arrangementId}` | Add an arrangement to a playlist            |
+| `PUT`    | `/{playlistId}/arrangement/{arrangementId}` | Remove an arrangement from a playlist       |
 
 ## Future Improvements 🌱  
 - Implement **CDN for optimized streaming**
 - Develop an **in-app sheet music viewer**
 - Advanced **search & filtering options**
-
-## License 📜  
-This project is licensed under the **MIT License**.

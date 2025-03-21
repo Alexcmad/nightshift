@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PlaylistService {
     private final PlaylistRepository playlistRepository;
@@ -48,5 +50,9 @@ public class PlaylistService {
 
     public ResponseEntity<Playlist> addPlaylist(Playlist playlist) {
         return ResponseEntity.ok(playlistRepository.save(playlist));
+    }
+
+    public ResponseEntity<List<Playlist>> findPlaylistsByUserId(Long userId) {
+        return ResponseEntity.ok(playlistRepository.findAllByUserId(userId));
     }
 }

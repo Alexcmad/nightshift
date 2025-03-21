@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/playlists")
 public class PlaylistController {
@@ -39,5 +41,10 @@ public class PlaylistController {
     @DeleteMapping("/{id}")
     public ResponseEntity<Playlist> deletePlaylist(@PathVariable Long id) {
         return playlistService.deletePlaylistById(id);
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<List<Playlist>> getPlaylistByUserId(@PathVariable Long id) {
+        return playlistService.findPlaylistsByUserId(id);
     }
 }
