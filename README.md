@@ -11,7 +11,9 @@ A **Spotify-like** web-based application that allows users to listen to musical 
 
 ## Development Roadmap 🚀  
 ✅ **1. Set up project on EC2** ← *You are here*  
-⬜ **2. Implement authentication (JWT & OAuth2)**  (skipped for now)
+
+⬜ **2. Implement authentication (JWT & OAuth2)** 
+
 ⬜ **3. Set up database schema (PostgreSQL)**  
 ⬜ **4. Develop API endpoints for user & arrangement management**  
 ⬜ **5. Integrate AWS S3 for file storage**  
