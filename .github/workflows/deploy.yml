@@ -16,7 +16,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
           # Replace with your SSH commands
-          ssh -o StrictHostKeyChecking=no -p 22 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} " cd nightshift && git pull &&  mvn clean package -DskipTests && mvn spring-boot:run "
+          ssh -o StrictHostKeyChecking=no -p 22 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} " pkill java && cd nightshift && git pull &&  mvn clean package -DskipTests && mvn spring-boot:run "
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_SECRET }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
