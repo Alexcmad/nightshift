@@ -1,9 +1,7 @@
 package com.alex.nightshift.nightshift.service;
 
 import com.alex.nightshift.nightshift.entity.Arrangement;
-import com.alex.nightshift.nightshift.entity.User;
 import com.alex.nightshift.nightshift.repository.ArrangementRepository;
-import com.alex.nightshift.nightshift.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -13,16 +11,12 @@ import java.util.List;
 @Service
 public class ArrangementService {
     private final ArrangementRepository arrangementRepository;
-    private final UserRepository userRepository;
 
-    public ArrangementService(ArrangementRepository arrangementRepository, UserRepository userRepository) {
+    public ArrangementService(ArrangementRepository arrangementRepository) {
         this.arrangementRepository = arrangementRepository;
-        this.userRepository = userRepository;
     }
 
-    public ResponseEntity<Arrangement> saveArrangement(Long uploaderId, Arrangement arrangement) {
-        User uploader = userRepository.findById(uploaderId).orElse(null);
-        arrangement.setUploader(uploader);
+    public ResponseEntity<Arrangement> saveArrangement(Arrangement arrangement) {
         return ResponseEntity.ok(arrangementRepository.save(arrangement));
     }
 

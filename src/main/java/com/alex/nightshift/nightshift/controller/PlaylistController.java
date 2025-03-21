@@ -21,6 +21,11 @@ public class PlaylistController {
         return playlistService.getPlaylistById(id);
     }
 
+    @PostMapping
+    public ResponseEntity<Playlist> addPlaylist(@RequestBody Playlist playlist) {
+        return playlistService.addPlaylist(playlist);
+    }
+
     @PostMapping("/{playlistId}/arrangement/{arrangementId}")
     public ResponseEntity<Playlist> addArrangementToPlaylist(@PathVariable Long playlistId, @PathVariable Long arrangementId) {
         return playlistService.addArrangementToPlaylist(playlistId, arrangementId);

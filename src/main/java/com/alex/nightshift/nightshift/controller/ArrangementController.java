@@ -19,8 +19,8 @@ public class ArrangementController {
     }
 
     @PostMapping
-    public ResponseEntity<Arrangement> createArrangement(@RequestBody Arrangement arrangement, @RequestParam Long uploaderId) {
-        return arrangementService.saveArrangement(uploaderId, arrangement);
+    public ResponseEntity<Arrangement> createArrangement(@RequestBody Arrangement arrangement) {
+        return arrangementService.saveArrangement(arrangement);
     }
 
     @PutMapping

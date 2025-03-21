@@ -45,4 +45,8 @@ public class PlaylistService {
         playlistRepository.deleteById(playlistId);
         return ResponseEntity.ok(playlistRepository.findById(playlistId).orElse(null));
     }
+
+    public ResponseEntity<Playlist> addPlaylist(Playlist playlist) {
+        return ResponseEntity.ok(playlistRepository.save(playlist));
+    }
 }
