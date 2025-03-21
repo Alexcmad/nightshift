@@ -9,8 +9,24 @@ on:
       - main
 
 jobs:
-  build-and-run:
+  build:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_DB: nightshift
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: toor
+        ports:
+          - 5433:5433
+        options: >-
+          --health-cmd="pg_isready -U postgres"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5options:
+          --health-cmd=@
 
     steps:
       - name: Checkout Code
@@ -21,9 +37,8 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+      - name: Wait for postgres
+        run: sleep 10
 
       - name: Build with Maven
         run: mvn clean package -DskipTests
-
-      - name: Run Application
-        run: mvn spring-boot:run
