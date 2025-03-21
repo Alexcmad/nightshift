@@ -1,0 +1,23 @@
+name: CI-Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Restart Server
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_SECRET }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          # Replace with your SSH commands
+          ssh -o StrictHostKeyChecking=no -p 22 ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} " cd nightshift &&  mvn clean package -DskipTests && mvn spring-boot:run "
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_SECRET }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
