@@ -26,4 +26,4 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: Run Application
-        run: java src/main/java/com/alex/nightshift/nightshift/NightshiftApplication.java
+        run: mvn spring-boot:run
