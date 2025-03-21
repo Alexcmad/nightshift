@@ -1,5 +1,6 @@
 package com.alex.nightshift.nightshift.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -24,6 +25,7 @@ public class User {
     @Column(nullable = false)
     private String username;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Playlist> playlists;
 

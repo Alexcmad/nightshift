@@ -1,7 +1,9 @@
 package com.alex.nightshift.nightshift.service;
 
 import com.alex.nightshift.nightshift.entity.Arrangement;
+import com.alex.nightshift.nightshift.entity.User;
 import com.alex.nightshift.nightshift.repository.ArrangementRepository;
+import com.alex.nightshift.nightshift.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -11,12 +13,16 @@ import java.util.List;
 @Service
 public class ArrangementService {
     private final ArrangementRepository arrangementRepository;
+    private final UserRepository userRepository;
 
-    public ArrangementService(ArrangementRepository arrangementRepository) {
+    public ArrangementService(ArrangementRepository arrangementRepository, UserRepository userRepository) {
         this.arrangementRepository = arrangementRepository;
+        this.userRepository = userRepository;
     }
 
-    public ResponseEntity<Arrangement> saveArrangement(Arrangement arrangement) {
+    public ResponseEntity<Arrangement> saveArrangement(Long uploaderId, Arrangement arrangement) {
+        User uploader = userRepository.findById(uploaderId).orElse(null);
+        arrangement.setUploader(uploader);
         return ResponseEntity.ok(arrangementRepository.save(arrangement));
     }
 
@@ -42,6 +48,11 @@ public class ArrangementService {
 
     public ResponseEntity<List<Arrangement>> getArrangementByTitle(String title) {
         return ResponseEntity.ok(arrangementRepository.findByTitle(title));
+    }
+
+    public ResponseEntity<Arrangement> deleteArrangementById(Long id) {
+        arrangementRepository.deleteById(id);
+        return ResponseEntity.ok(arrangementRepository.findById(id).get());
     }
 
 }

@@ -31,4 +31,18 @@ public class PlaylistService {
         playlistRepository.save(playlist);
         return ResponseEntity.ok(playlist);
     }
+
+    public ResponseEntity<Playlist> deleteArrangementFromPlaylist (Long playlistId, Long arrangementId){
+        Playlist playlist = getPlaylistById(playlistId).getBody();
+        Arrangement arrangement = arrangementRepository.findById(arrangementId).orElse(null);
+        assert playlist != null;
+        playlist.removeArrangement(arrangement);
+        playlistRepository.save(playlist);
+        return ResponseEntity.ok(playlist);
+    }
+
+    public ResponseEntity<Playlist> deletePlaylistById(Long playlistId) {
+        playlistRepository.deleteById(playlistId);
+        return ResponseEntity.ok(playlistRepository.findById(playlistId).orElse(null));
+    }
 }

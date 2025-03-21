@@ -56,6 +56,10 @@ public class Playlist {
         this.arrangements.add(arrangement);
     }
 
+    public void removeArrangement(Arrangement arrangement) {
+        this.arrangements.remove(arrangement);
+    }
+
     public void setArrangements(List<Arrangement> arrangements) {
         this.arrangements = arrangements;
     }

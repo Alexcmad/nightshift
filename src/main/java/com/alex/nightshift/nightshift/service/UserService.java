@@ -19,27 +19,30 @@ public class UserService {
     }
 
     public ResponseEntity<User> getByEmail(String email) {
-        if (userRepository.findByEmail(email).isPresent()) {
-            return ResponseEntity.ok(userRepository.findByEmail(email).get());
-        }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(userRepository.findByEmail(email).orElse(null));
     }
 
     public ResponseEntity<User> getById(Long id) {
-        if (userRepository.findById(id).isPresent()) {
-            return ResponseEntity.ok(userRepository.findById(id).get());
-        }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(userRepository.findById(id).orElse(null));
     }
 
     public ResponseEntity<User> getByUsername(String username) {
-        if (userRepository.findByUsername(username).isPresent()) {
-            return ResponseEntity.ok(userRepository.findByUsername(username).get());
-        }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(userRepository.findByUsername(username).orElse(null));
     }
 
     public ResponseEntity<User> addUser(User user) {
         return ResponseEntity.ok(userRepository.save(user));
+    }
+
+    public ResponseEntity<User> updateUser(User user) {
+        if (userRepository.findById(user.getId()).isPresent()) {
+            return ResponseEntity.ok(userRepository.save(user));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    public ResponseEntity<User> deleteUser(Long id) {
+        userRepository.deleteById(id);
+        return ResponseEntity.ok(userRepository.findById(id).orElse(null));
     }
 }

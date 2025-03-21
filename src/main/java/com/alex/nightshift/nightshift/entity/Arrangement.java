@@ -21,6 +21,9 @@ public class Arrangement {
     @Column(nullable = false)
     private String instrumentation;
 
+    @Column
+    private String tags;
+
     @Column(nullable = false)
     private String audioUrl;
 
@@ -107,6 +110,14 @@ public class Arrangement {
 
     public void setUploader(User uploader) {
         this.uploader = uploader;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 }
 
