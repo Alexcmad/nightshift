@@ -10,6 +10,6 @@ public class HomeController {
 
     @GetMapping("/hello")
     public String hello() {
-        return "Welcome to The Night Shift!";
+        return "Welcome to The Night Shift! owo";
     }
 }
