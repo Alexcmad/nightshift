@@ -14,7 +14,7 @@ A **Spotify-like** web-based application that allows users to listen to musical 
 ⬜ **2. Implement authentication (JWT & OAuth2)**\
 ✅ **3. Set up database schema (PostgreSQL)**  
 ✅ **4. Develop API endpoints for user & arrangement management**  
-⬜ **5. Integrate AWS S3 for file storage**  
+✅ **5. Integrate AWS S3 for file storage**  
 ✅ **6. Implement playlist management**  
 ⬜ **7. Deploy and optimize for production**  
 
